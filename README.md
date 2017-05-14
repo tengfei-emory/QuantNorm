@@ -1,7 +1,7 @@
 # QuantNorm
 Quantile Normalization for Batch Effect Removal 
 
-#Dataset
+# Dataset
 The dataset used in the package is downloaded from http://web.stanford.edu/group/barres_lab/brainseq2/brainseq2.html.
 
 # References

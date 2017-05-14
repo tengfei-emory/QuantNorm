@@ -1,5 +1,7 @@
 # QuantNorm
-Quantile Normalization for Batch Effect Removal 
+Quantile Normalization for Batch Effect Removal
+
+Our method aims to effectively cluster the cells by modifying the correlation matrix of cell RNA-seq data by quantile normalization. As can be verified by the dataset below, our method makes a better job classifying cell types for brain data for two batches (human and mouse), compared to ComBat.
 
 # Installation Guide
 ```{r}
@@ -36,8 +38,16 @@ plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 #QuantNorm correction (ten iterations)
 ccc <- QuantNorm(humanmouse,batches,iter=10)
 plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
+
+#ComBat
+library(sva) #(may need to install package sva from bioconductor)
+cleandat <- ComBat(log(humanmouse+1),batches)
+ccc.1<-1-cor(cleandat,method="spearman")
+plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 ```
 
 
 # References
+Johnson, W. Evan, Cheng Li, and Ariel Rabinovic. "Adjusting batch effects in microarray expression data using empirical Bayes methods." Biostatistics 8.1 (2007): 118-127.
+
 Zhang, Ye, et al. "Purification and characterization of progenitor and mature human astrocytes reveals transcriptional and functional differences with mouse." Neuron 89.1 (2016): 37-53.

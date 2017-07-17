@@ -58,12 +58,13 @@ QuantNorm <- function (dat, batch, method = "refB", tol = 1e-4, max = 50, logdat
   #    iter = iter+1
   #  }}
   else if (method == "refB") {
-    while (dist > tol && iter < max){
+    while (dist > tol && iter <= max){
       ccc.0 <- ccc
       ccc <- qnorm1(ccc, batch)
       dist = sqrt(sum((as.vector(ccc)-as.vector(ccc.0))^2))
       iter = iter+1
     }
+    cat(paste("Algorithm converged after", iter-1, "iterations."))
   }else{
     cat("method must be 'refB' or 'block'")
   }

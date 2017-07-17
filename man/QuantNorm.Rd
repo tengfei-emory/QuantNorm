@@ -4,17 +4,19 @@
 \alias{QuantNorm}
 \title{Conducting batch effect correction by quantile normalization}
 \usage{
-QuantNorm(dat, batch, method = "refB", iter = 1, logdat = TRUE,
-  standardize = FALSE)
+QuantNorm(dat, batch, method = "refB", tol = 1e-04, max = 50,
+  logdat = TRUE, standardize = FALSE)
 }
 \arguments{
 \item{dat}{The original p*n batch effect data with n subjects and p RNA-seq measurements.}
 
 \item{batch}{The vector of length n indicating which batch the subjects belong to.}
 
-\item{method}{Method for the quantile normalization. There are three options: "refB", "ref1" and "block".}
+\item{method}{Method for the quantile normalization. There are two options: "refB" and "block".}
 
-\item{iter}{Times of iteration for "refB" and "ref1" methods when no standardization is applied.}
+\item{tol}{The tolerance for the iterative method "refB", which is the Euclidean distance of the two dissimilarity matrices before and after each iteration.}
+
+\item{max}{Maximum number of the iteration if the tolerance is not reached.}
 
 \item{logdat}{Whether conducting log transformation to data or not.}
 
@@ -43,6 +45,6 @@ batches <- c(rep(1,41),rep(2,21))
 plot3d(princomp(1-cor(humanmouse,method='spearman'))$scores[,1:3], col=celltype, size=10)
 
 #QuantNorm correction
-ccc <- QuantNorm(humanmouse,batches,iter=10)
+ccc <- QuantNorm(humanmouse,batches)
 plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 }

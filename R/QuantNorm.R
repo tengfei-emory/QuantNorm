@@ -31,53 +31,40 @@
 #' plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 
 
-QuantNorm <-
-function(dat,batch,method="refB",iter=1,logdat=TRUE,standardize=FALSE){
+QuantNorm <- function (dat, batch, method = "refB", tol = 1e-4, max = 50, logdat = TRUE,
+                       standardize = FALSE)
+{
+  dist = 10
+  iter = 0
 
-  if(standardize==TRUE){
-
-    ccc <- standardization(dat,batch)
-
-    if(method=="ref1"){
-      ccc <- qnorm(ccc,batch)
-    }else if(method=="refB"){
-      ccc <- qnorm1(ccc,batch)
-    }else if(method=="block"){
-      ccc <- qnorm2(ccc,batch)
+  if (standardize == TRUE) {
+    ccc <- standardization(dat, batch)
+  }
+  else if (logdat == FALSE) {
+    ccc <- 1 - cor(dat, method = "spearman")
+  }
+  else {
+    ccc <- 1 - cor(log(dat + 1), method = "spearman")
+  }
+  if (method == "block") {
+    ccc <- qnorm2(ccc, batch)
+  }
+  else if (method == "ref1"){
+    while (dist > tol && iter < max){
+      ccc.0 <- ccc
+      ccc <- qnorm(ccc, batch)
+      dist = sqrt(sum((as.vector(ccc)-as.vector(ccc.0))^2))
+      iter = iter+1
     }
-
+  }else if (method == "refB") {
+    while (dist > tol && iter < max){
+      ccc.0 <- ccc
+      ccc <- qnorm1(ccc, batch)
+      dist = sqrt(sum((as.vector(ccc)-as.vector(ccc.0))^2))
+      iter = iter+1
+    }
   }else{
-
-    if(logdat == FALSE){
-      ccc <- 1-cor(dat,method="spearman")
-    }else{
-      ccc <- 1-cor(log(dat+1),method="spearman")
-    }
-
-    if (method=='block'){
-
-      ccc <- qnorm2(ccc,batch)
-
-    }else{
-
-      if (iter < 1){
-        cat('iter must be larger than 1')
-      }else{
-        if (method == "ref1"){
-          for (i in 1:floor(iter)){
-            ccc <- qnorm(ccc,batch)
-          }
-        }else if (method == "refB"){
-          for (i in 1:floor(iter)){
-            ccc <- qnorm1(ccc,batch)
-          }
-        }else if (method == "block"){
-          ccc <- qnorm2(ccc,batch)
-        }else{
-          cat("method must be 'ref1', 'refB' or 'block'")
-        }
-      }
-    }
+    cat("method must be 'ref1', 'refB' or 'block'")
   }
   return(ccc)
 }

@@ -4,8 +4,9 @@
 #'
 #' @param dat The original p*n batch effect data with n subjects and p RNA-seq measurements.
 #' @param batch The vector of length n indicating which batch the subjects belong to.
-#' @param method Method for the quantile normalization. There are three options: "refB", "ref1" and "block".
-#' @param iter Times of iteration for "refB" and "ref1" methods when no standardization is applied.
+#' @param method Method for the quantile normalization. There are two options: "refB" and "block".
+#' @param tol The tolerance for the iterative method "refB", which is the Euclidean distance of the two dissimilarity matrices before and after each iteration.
+#' @param max Maximum number of the iteration if the tolerance is not reached.
 #' @param logdat Whether conducting log transformation to data or not.
 #' @param standardize Whether conducting standardization [(dat - mean)/var] to data or not.
 #' @return The corrected 1-correlation matrix between subjects.
@@ -27,7 +28,7 @@
 #' plot3d(princomp(1-cor(humanmouse,method='spearman'))$scores[,1:3], col=celltype, size=10)
 #'
 #' #QuantNorm correction
-#' ccc <- QuantNorm(humanmouse,batches,iter=10)
+#' ccc <- QuantNorm(humanmouse,batches)
 #' plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 
 

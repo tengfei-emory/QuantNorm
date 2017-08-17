@@ -5,6 +5,7 @@
 #' @param dat The original p*n batch effect data with n subjects and p RNA-seq measurements.
 #' @param batch The vector of length n indicating which batch the subjects belong to.
 #' @param method Method for the quantile normalization. There are two options: "refB" and "block".
+#' @param col_method Method to calculate the correlation matrix.
 #' @param tol The tolerance for the iterative method "refB", which is the Euclidean distance of the two dissimilarity matrices before and after each iteration.
 #' @param max Maximum number of the iteration if the tolerance is not reached.
 #' @param logdat Whether conducting log transformation to data or not.
@@ -32,17 +33,17 @@
 #' plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 
 
-QuantNorm <- function (dat, batch, method = "refB", tol = 1e-4, max = 50, logdat = TRUE,
+QuantNorm <- function (dat, batch, method = "refB", cor_method = 'spearman', tol = 1e-4, max = 50, logdat = TRUE,
                        standardize = FALSE)
 {
   dist = 10
   iter = 0
 
   if (standardize == TRUE) {
-    ccc <- standardization(dat, batch)
+    ccc <- standardization(dat, batch, method=cor_method)
   }
   else if (logdat == FALSE) {
-    ccc <- 1 - cor(dat, method = "spearman")
+    ccc <- 1 - cor(dat, method = cor_method)
   }
   else {
     ccc <- 1 - cor(log(dat + 1), method = "spearman")

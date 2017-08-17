@@ -1,5 +1,5 @@
 standardization <-
-function(dat,batch){
+function(dat,batch,method){
   if(is.matrix(dat)==FALSE){
     dat <- as.matrix(dat)
   }
@@ -12,6 +12,6 @@ function(dat,batch){
     }
   }
   dat <- na.omit(dat)
-  ccc <- 1-cor(dat,method='spearman')
+  ccc <- 1-cor(dat,method=method)
   return(ccc)
 }

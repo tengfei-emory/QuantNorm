@@ -46,7 +46,7 @@ QuantNorm <- function (dat, batch, method = "refB", cor_method = 'spearman', tol
     ccc <- 1 - cor(dat, method = cor_method)
   }
   else {
-    ccc <- 1 - cor(log(dat + 1), method = "spearman")
+    ccc <- 1 - cor(log(dat + 1), method = cor_method)
   }
   if (method == "block") {
     ccc <- qnorm2(ccc, batch)

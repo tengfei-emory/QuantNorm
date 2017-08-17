@@ -4,8 +4,8 @@
 \alias{QuantNorm}
 \title{Conducting batch effect correction by quantile normalization}
 \usage{
-QuantNorm(dat, batch, method = "refB", tol = 1e-04, max = 50,
-  logdat = TRUE, standardize = FALSE)
+QuantNorm(dat, batch, method = "refB", cor_method = "spearman",
+  tol = 1e-04, max = 50, logdat = TRUE, standardize = FALSE)
 }
 \arguments{
 \item{dat}{The original p*n batch effect data with n subjects and p RNA-seq measurements.}
@@ -13,6 +13,8 @@ QuantNorm(dat, batch, method = "refB", tol = 1e-04, max = 50,
 \item{batch}{The vector of length n indicating which batch the subjects belong to.}
 
 \item{method}{Method for the quantile normalization. There are two options: "refB" and "block".}
+
+\item{cor_method}{Method to calculate the correlation matrix.}
 
 \item{tol}{The tolerance for the iterative method "refB", which is the Euclidean distance of the two dissimilarity matrices before and after each iteration.}
 

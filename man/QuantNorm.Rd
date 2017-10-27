@@ -4,7 +4,7 @@
 \alias{QuantNorm}
 \title{Conducting batch effect correction by quantile normalization}
 \usage{
-QuantNorm(dat, batch, method = "row.column", cor_method = "spearman",
+QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
   tol = 1e-04, max = 50, logdat = TRUE, standardize = FALSE)
 }
 \arguments{

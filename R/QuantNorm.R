@@ -33,7 +33,7 @@
 #' plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 
 
-QuantNorm <- function (dat, batch, method = "row.column", cor_method = 'spearman', tol = 1e-4, max = 50, logdat = TRUE,
+QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman', tol = 1e-4, max = 50, logdat = TRUE,
                        standardize = FALSE)
 {
   dist = 10

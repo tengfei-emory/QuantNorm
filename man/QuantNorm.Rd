@@ -4,7 +4,7 @@
 \alias{QuantNorm}
 \title{Conducting batch effect correction by quantile normalization}
 \usage{
-QuantNorm(dat, batch, method = "refB", cor_method = "spearman",
+QuantNorm(dat, batch, method = "row.column", cor_method = "spearman",
   tol = 1e-04, max = 50, logdat = TRUE, standardize = FALSE)
 }
 \arguments{
@@ -12,7 +12,7 @@ QuantNorm(dat, batch, method = "refB", cor_method = "spearman",
 
 \item{batch}{The vector of length n indicating which batch the subjects belong to.}
 
-\item{method}{Method for the quantile normalization. There are two options: "refB" and "block".}
+\item{method}{Method for the quantile normalization. There are two options: "row/column" and "vectorize".}
 
 \item{cor_method}{Method to calculate the correlation matrix.}
 

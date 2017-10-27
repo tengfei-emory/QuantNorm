@@ -4,7 +4,7 @@
 #'
 #' @param dat The original p*n batch effect data with n subjects and p RNA-seq measurements.
 #' @param batch The vector of length n indicating which batch the subjects belong to.
-#' @param method Method for the quantile normalization. There are two options: "refB" and "block".
+#' @param method Method for the quantile normalization. There are two options: "row/column" and "vectorize".
 #' @param cor_method Method to calculate the correlation matrix.
 #' @param tol The tolerance for the iterative method "refB", which is the Euclidean distance of the two dissimilarity matrices before and after each iteration.
 #' @param max Maximum number of the iteration if the tolerance is not reached.
@@ -33,7 +33,7 @@
 #' plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 
 
-QuantNorm <- function (dat, batch, method = "refB", cor_method = 'spearman', tol = 1e-4, max = 50, logdat = TRUE,
+QuantNorm <- function (dat, batch, method = "row.column", cor_method = 'spearman', tol = 1e-4, max = 50, logdat = TRUE,
                        standardize = FALSE)
 {
   dist = 10
@@ -48,7 +48,7 @@ QuantNorm <- function (dat, batch, method = "refB", cor_method = 'spearman', tol
   else {
     ccc <- 1 - cor(log(dat + 1), method = cor_method)
   }
-  if (method == "block") {
+  if (method == "vectorize") {
     ccc <- qnorm2(ccc, batch)
   }
   #else if (method == "ref1"){
@@ -58,7 +58,7 @@ QuantNorm <- function (dat, batch, method = "refB", cor_method = 'spearman', tol
   #    dist = sqrt(sum((as.vector(ccc)-as.vector(ccc.0))^2))
   #    iter = iter+1
   #  }}
-  else if (method == "refB") {
+  else if (method == "row/column") {
     while (dist > tol && iter <= max){
       ccc.0 <- ccc
       ccc <- qnorm1(ccc, batch)
@@ -67,7 +67,7 @@ QuantNorm <- function (dat, batch, method = "refB", cor_method = 'spearman', tol
     }
     cat(paste("Algorithm converged after", iter-1, "iterations."))
   }else{
-    cat("method must be 'refB' or 'block'")
+    cat("method must be 'row/column' or 'vectorize'")
   }
   return(ccc)
 }

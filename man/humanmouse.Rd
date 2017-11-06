@@ -9,7 +9,7 @@
 \url{http://web.stanford.edu/group/barres_lab/brainseq2/brainseq2.html}
 }
 \usage{
-humanmouse
+data(humanmouse)
 }
 \description{
 Brain RNA-Seq data for both human and mouse.

@@ -1,4 +1,4 @@
-#' Normalized ENCODE microarray data for both human and mouse.
+#' Normalized ENCODE raw counts data for both human and mouse.
 #'
 #' @usage data(ENCODE.human.mouse)
 #' @format A data frame with 10309 rows and 26 columns

@@ -22,7 +22,7 @@ QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
 
 \item{logdat}{Whether conducting log transformation to data or not.}
 
-\item{standardize}{Whether conducting standardization [(dat - mean)/var] to data or not.}
+\item{standardize}{Whether conducting standardization [(dat - mean)/sqrt(var)] to data or not.}
 }
 \value{
 The corrected 1-correlation matrix between subjects.

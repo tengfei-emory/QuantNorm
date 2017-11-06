@@ -9,7 +9,7 @@
 #' @param tol The tolerance for the iterative method "refB", which is the Euclidean distance of the two dissimilarity matrices before and after each iteration.
 #' @param max Maximum number of the iteration if the tolerance is not reached.
 #' @param logdat Whether conducting log transformation to data or not.
-#' @param standardize Whether conducting standardization [(dat - mean)/var] to data or not.
+#' @param standardize Whether conducting standardization [(dat - mean)/sqrt(var)] to data or not.
 #' @return The corrected 1-correlation matrix between subjects.
 #' @export
 #' @examples

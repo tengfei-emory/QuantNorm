@@ -1,7 +1,7 @@
 # QuantNorm
 Quantile Normalization for Batch Effect Removal
 
-Our method aims to effectively cluster the cells by modifying the correlation matrix of cell RNA-seq data by quantile normalization. As can be verified by the dataset below, our method makes a better job classifying cell types for brain data for two batches (human and mouse), compared to ComBat.
+Our method aims to effectively cluster the cells by modifying the correlation matrix of cell RNA-seq data by quantile normalization. As can be verified by the examples below, our method makes a better job classifying cell or tissue types for brain data and ENCODE data for two batches (human and mouse), compared to ComBat.
 
 # Installation Guide
 ```{r}

@@ -16,7 +16,7 @@
 #'
 #' library(rgl) #for 3D PCA display
 #'
-#' data("humanmouse")
+#' data("brain")
 #'
 #' #Numbering the cells by cell types
 #' celltype <- c(rep(1,8),rep(7,6),rep(1,12),rep(2,1),rep(3,5),rep(4,3),rep(5,2),rep(6,4),

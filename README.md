@@ -47,6 +47,9 @@ The dataset used in this example is reproduced according to Gilad et al (2015). 
 library(pheatmap) #drawing heatmap
 data("ENCODE.human.mouse")
 
+#Before correction, the subjects are clustered by species
+pheatmap(cor(ENCODE.human.mouse))
+
 #Assigning the batches based on species
 batches <- c(rep(1,13),rep(2,13))
 

@@ -51,7 +51,7 @@ data("ENCODE.human.mouse")
 batches <- c(rep(1,13),rep(2,13))
 
 #QuantNorm correction
-corrected.distrance.matrix <- QuantNorm(ENCODE.human.mouse,batches,method='row/column', cor_method='pearson', logdat=F,standardize = T)
+corrected.distance.matrix <- QuantNorm(ENCODE.human.mouse,batches,method='row/column', cor_method='pearson', logdat=F,standardize = T)
 pheatmap(1-corrected.distance.matrix)
 
 #ComBat

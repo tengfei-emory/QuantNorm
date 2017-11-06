@@ -10,7 +10,7 @@ install_github('tengfei-emory/QuantNorm')
 ```
 
 
-# Example 1
+# Example 1 - Human and Mouse Brain RNA-seq Data
 
 The dataset used in this example is downloaded from http://web.stanford.edu/group/barres_lab/brainseq2/brainseq2.html. The data consists of brain RNA-seq measurements for human cells and mouse cells. There are 41 human cell samples and 21 mouse cell samples, the types of which is the column name of the data. For each cell sample, there are 15041 gene counts. The dataset can be loaded by data(brain).
 
@@ -40,7 +40,7 @@ ccc.1<-1-cor(cleandat,method="spearman")
 plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 ```
 
-# Example 2
+# Example 2 - ENCODE Data for Human and Mouse Tissues
 The dataset used in this example is reproduced according to Gilad et al (2015). The data contains the log-normalized counts for 13 different tissues for human and their counterparts in mouse. Our algorithm obtains clusters by tissues. The dataset can be loaded by data(ENCODE).
 
 ```{r}

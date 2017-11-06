@@ -26,10 +26,10 @@
 #' batches <- c(rep(1,41),rep(2,21))
 #'
 #' #Plot the 3D PCA for the uncorrected batch effect data
-#' plot3d(princomp(1-cor(humanmouse,method='spearman'))$scores[,1:3], col=celltype, size=10)
+#' plot3d(princomp(1-cor(brain,method='spearman'))$scores[,1:3], col=celltype, size=10)
 #'
 #' #QuantNorm correction
-#' ccc <- QuantNorm(humanmouse,batches)
+#' ccc <- QuantNorm(brain,batches)
 #' plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 
 

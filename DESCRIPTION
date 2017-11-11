@@ -1,10 +1,10 @@
 Package: QuantNorm
 Title: Quantile Normalization Methods for Batch Effect Correction
-Version: 0.1
-Date: 2017-05-13
+Version: 0.2
+Date: 2017-11-11
 Author: Teng Fei, Tianwei Yu
 Maintainer: Teng Fei <tfei@emory.edu>
-Description: The QuantNorm function can help classify RNA-seq measurements from different batches.
+Description: The QuantNorm function can help the cluster analysis for omics data subjects from different batches.
 License: GPL (>= 2)
 Depends: stats, base, R (>= 3.3.1)
 RoxygenNote: 6.0.1

@@ -24,9 +24,6 @@ library(network); library(GGally) ;library(ggplot2) #drawing network graph
 
 data("ENCODE")
 
-#Before correction, the subjects are clustered by species
-pheatmap(cor(ENCODE))
-
 #Assigning the batches based on species
 batches <- c(rep(1,13),rep(2,13))
 
@@ -39,8 +36,8 @@ mat <- connection.matrix(corrected.distance.matrix,colnames(corrected.distance.m
 
 #Creating network object and plot
 ENCODE.net=network(mat, directed=F)
-ENCODE.col <- c("Human" = "#ff69b4", "Mouse" = "#0099ff")
-ENCODE \%v\% "Species" <- c(rep('Human',13),rep('Mouse',13))
+ENCODE.net.col <- c("Human" = "#ff69b4", "Mouse" = "#0099ff")
+ENCODE.net \%v\% "Species" <- c(rep('Human',13),rep('Mouse',13))
 p0 <- ggnet2(ENCODE.net,label=T,color = 'Species', palette = "Set2",size = 3, vjust = -0.6,mode = "kamadakawai",label.size = 3, color.legend = 'Species')+theme(legend.position = 'bottom')
 plot(p0)
 }

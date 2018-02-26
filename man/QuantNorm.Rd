@@ -5,7 +5,7 @@
 \title{Conducting batch effect correction by quantile normalization}
 \usage{
 QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
-  tol = 1e-04, max = 50, logdat = TRUE, standardize = FALSE)
+  tol = 0.01, max = 50, logdat = TRUE, standardize = FALSE)
 }
 \arguments{
 \item{dat}{The original p*n batch effect data with n subjects and p RNA-seq measurements.}
@@ -16,7 +16,7 @@ QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
 
 \item{cor_method}{Method to calculate the correlation matrix.}
 
-\item{tol}{The tolerance for the iterative method "refB", which is the Euclidean distance of the two dissimilarity matrices before and after each iteration.}
+\item{tol}{The tolerance for the iterative method "row/column", which is the Euclidean distance of the vectorized two dissimilarity matrices before and after each iteration.}
 
 \item{max}{Maximum number of the iteration if the tolerance is not reached.}
 

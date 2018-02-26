@@ -6,7 +6,7 @@
 #' @param batch The vector of length n indicating which batch the subjects belong to.
 #' @param method Method for the quantile normalization. There are two options: "row/column" and "vectorize".
 #' @param cor_method Method to calculate the correlation matrix.
-#' @param tol The tolerance for the iterative method "refB", which is the Euclidean distance of the two dissimilarity matrices before and after each iteration.
+#' @param tol The tolerance for the iterative method "row/column", which is the Euclidean distance of the vectorized two dissimilarity matrices before and after each iteration.
 #' @param max Maximum number of the iteration if the tolerance is not reached.
 #' @param logdat Whether conducting log transformation to data or not.
 #' @param standardize Whether conducting standardization [(dat - mean)/sqrt(var)] to data or not.
@@ -33,7 +33,7 @@
 #' plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 
 
-QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman', tol = 1e-4, max = 50, logdat = TRUE,
+QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman', tol = 1e-2, max = 50, logdat = TRUE,
                        standardize = FALSE)
 {
   dist = 10
@@ -48,26 +48,27 @@ QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman
   else {
     ccc <- 1 - cor(log(dat + 1), method = cor_method)
   }
+
   if (method == "vectorize") {
     ccc <- qnorm2(ccc, batch)
   }
-  #else if (method == "ref1"){
-  #  while (dist > tol && iter < max){
-  #    ccc.0 <- ccc
-  #    ccc <- qnorm(ccc, batch)
-  #    dist = sqrt(sum((as.vector(ccc)-as.vector(ccc.0))^2))
-  #    iter = iter+1
-  #  }}
+
   else if (method == "row/column") {
-    while (dist > tol && iter <= max){
+    while (dist > tol && iter < max){
       ccc.0 <- ccc
       ccc <- qnorm1(ccc, batch)
       dist = sqrt(sum((as.vector(ccc)-as.vector(ccc.0))^2))
       iter = iter+1
     }
-    cat(paste("Algorithm converged after", iter-1, "iterations."))
+
+    if (dist <= tol){
+      cat(paste("Algorithm converged after", iter, "iterations. \n"))
+    }else{
+      cat(paste("The algorithm did not converge after", max,"iteration. \n The difference between the last two iteration is", dist,".\n"))
+    }
+
   }else{
-    cat("method must be 'row/column' or 'vectorize'")
+    cat("method must be 'row/column' or 'vectorize'. \n")
   }
   return(ccc)
 }

@@ -1,7 +1,13 @@
 # QuantNorm
-Quantile Normalization for Batch Effect Removal
+Quantile Normalization for Batch Effect Adjustment
 
-Our method aims to effectively cluster the cells by modifying the correlation matrix of cell RNA-seq data by quantile normalization. As can be verified by the examples below, our method does a better job classifying cell or tissue types for brain data and ENCODE data for two batches (human and mouse).
+Our method aims to effectively cluster the cells by modifying the correlation matrix of cell RNA-seq data by quantile normalization. This method has been published in Bioinformatics (https://doi.org/10.1093/bioinformatics/bty117).
+
+### QuantNorm: Vectorization approach
+![Vectorization](https://github.com/tengfei-emory/Image/blob/master/f4.png)
+
+### QuantNorm: Row/column iterative approach
+![Row/Column](https://github.com/tengfei-emory/Image/blob/master/f6.png)
 
 # Installation Guide
 ```{r}

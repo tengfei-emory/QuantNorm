@@ -74,6 +74,11 @@ library(sva) #(may need to install package sva from bioconductor)
 cleandat <- ComBat(ENCODE,batches)
 pheatmap(cor(cleandat),clustering_method="average")
 ```
+QuantNorm (left) vs ComBat (right):
+
+![Heatmaps](https://github.com/tengfei-emory/Image/blob/master/f7.png)
+
+
 
 # References
 

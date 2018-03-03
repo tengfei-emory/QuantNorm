@@ -1,7 +1,7 @@
 # QuantNorm
 Mitigating the adverse impact of batch effects in sample pattern detection
 
-QuantNorm modifies the distance matrix obtained from data with batch effects, so as to improve the performance of sample pattern detection, such as clustering, dimension reduction, and construction of networks between subjects. The method has been published in Bioinformatics (Fei, et al, 2018, https://doi.org/10.1093/bioinformatics/bty117).
+QuantNorm modifies the distance matrix obtained from data with batch effects, so as to improve the performance of sample pattern detection, such as clustering, dimension reduction, and construction of networks between subjects. The method has been published in Bioinformatics (Fei et al, 2018, https://doi.org/10.1093/bioinformatics/bty117).
 
 
 ### QuantNorm: Vectorization approach
@@ -24,7 +24,7 @@ library(QuantNorm)
 
 # Example 1 - Human and Mouse Brain RNA-seq Data
 
-The dataset used in this example is downloaded from http://web.stanford.edu/group/barres_lab/brainseq2/brainseq2.html. The data consists of brain RNA-seq measurements for human cells and mouse cells. There are 41 human cell samples and 21 mouse cell samples, the types of which is the column name of the data. For each cell sample, there are 15041 gene counts. The dataset can be loaded by data(brain).
+The dataset (Zhang et al, 2016) is downloaded from http://web.stanford.edu/group/barres_lab/brainseq2/brainseq2.html. The data consists of brain RNA-seq measurements for human cells and mouse cells. There are 41 human cell samples and 21 mouse cell samples, the types of which is the column name of the data. For each cell sample, there are 15041 gene counts. The dataset can be loaded by data(brain).
 
 ```{r}
 library(rgl) #for 3D PCA display

@@ -7,6 +7,7 @@ Our method aims to effectively cluster the cells by modifying the correlation ma
 ```{r}
 library(devtools)
 install_github('tengfei-emory/QuantNorm')
+library(QuantNorm)
 ```
 
 
@@ -63,8 +64,10 @@ cleandat <- ComBat(ENCODE,batches)
 pheatmap(cor(cleandat),clustering_method="average")
 ```
 
-
 # References
+
+Fei, Teng, et al. "Mitigating the adverse impact of batch effects in sample pattern detection", Bioinformatics (2018, accepted).
+
 Gilad, Yoav, and Orna Mizrahi-Man. "A reanalysis of mouse ENCODE comparative gene expression data." F1000Research 4 (2015).
 
 Johnson, W. Evan, Cheng Li, and Ariel Rabinovic. "Adjusting batch effects in microarray expression data using empirical Bayes methods." Biostatistics 8.1 (2007): 118-127.

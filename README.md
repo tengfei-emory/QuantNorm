@@ -82,7 +82,7 @@ QuantNorm (left) vs ComBat (right):
 
 # References
 
-Fei, Teng, et al. "Mitigating the adverse impact of batch effects in sample pattern detection", Bioinformatics (2018, accepted).
+Fei, Teng, et al. "Mitigating the adverse impact of batch effects in sample pattern detection", Bioinformatics, accepted (2018).
 
 Gilad, Yoav, and Orna Mizrahi-Man. "A reanalysis of mouse ENCODE comparative gene expression data." F1000Research 4 (2015).
 

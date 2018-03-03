@@ -7,7 +7,7 @@ Our method aims to effectively cluster the cells by modifying the correlation ma
 ![Vectorization](https://github.com/tengfei-emory/Image/blob/master/f4.png)
 
 ### QuantNorm: Row/column iterative approach
-![Row/Column](https://github.com/tengfei-emory/Image/blob/master/f6.png)
+![Row/Column](https://github.com/tengfei-emory/Image/blob/master/f5_3.png)
 
 # Installation Guide
 ```{r}

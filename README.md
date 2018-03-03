@@ -3,11 +3,16 @@ Mitigating the adverse impact of batch effects in sample pattern detection
 
 QuantNorm modifies the distance matrix obtained from data with batch effects, so as to improve the performance of sample pattern detection, such as clustering, dimension reduction, and construction of networks between subjects. The method has been published in Bioinformatics (Fei, et al, 2018, https://doi.org/10.1093/bioinformatics/bty117).
 
+
 ### QuantNorm: Vectorization approach
 ![Vectorization](https://github.com/tengfei-emory/Image/blob/master/f4.png)
 
+
+
 ### QuantNorm: Row/column iterative approach
-![Row/Column](https://github.com/tengfei-emory/Image/blob/master/f5_3.png)
+![Row/Column](https://github.com/tengfei-emory/Image/blob/master/f5_4.png)
+
+
 
 # Installation Guide
 ```{r}

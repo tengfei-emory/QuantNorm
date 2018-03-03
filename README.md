@@ -1,7 +1,7 @@
 # QuantNorm
-Quantile Normalization for Batch Effect Adjustment
+Mitigating the adverse impact of batch effects in sample pattern detection
 
-Our method aims to effectively cluster the cells by modifying the correlation matrix of cell RNA-seq data by quantile normalization. This method has been published in Bioinformatics (https://doi.org/10.1093/bioinformatics/bty117).
+QuantNorm modifies the distance matrix obtained from data with batch effects, so as to improve the performance of sample pattern detection, such as clustering, dimension reduction, and construction of networks between subjects. The method has been published in Bioinformatics (Fei, et al, 2018, https://doi.org/10.1093/bioinformatics/bty117).
 
 ### QuantNorm: Vectorization approach
 ![Vectorization](https://github.com/tengfei-emory/Image/blob/master/f4.png)

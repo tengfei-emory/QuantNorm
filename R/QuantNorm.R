@@ -11,7 +11,7 @@
 #' @param logdat Whether conducting log transformation to data or not.
 #' @param standardize Whether conducting standardization [(dat - mean)/sqrt(var)] to data or not.
 #' @return The corrected 1-correlation matrix between subjects.
-#' @references Fei et al (2018) Mitigating the adverse impact of batch effects in sample pattern detection, \textit{Bioinformatics}.
+#' @references Fei et al (2018), Mitigating the adverse impact of batch effects in sample pattern detection, Bioinformatics, https://doi.org/10.1093/bioinformatics/bty117.
 #' @export
 #' @examples
 #'

@@ -1,11 +1,13 @@
 Package: QuantNorm
 Title: QuantNorm: Mitigating the adverse impact of batch effects in sample pattern detection
+Description: QuantNorm modifies the distance matrix obtained from data with batch effects, so as to improve the performance of sample pattern detection, such as clustering, dimension reduction, and construction of networks between subjects. The method has been published in Bioinformatics (Fei et al, 2018, https://doi.org/10.1093/bioinformatics/bty117). This package is also avaiable from GitHub (https://github.com/tengfei-emory/QuantNorm).
 Version: 1.0.0
 Depends: stats, base, R (>= 3.3.1)
 Suggests:  GGally, ggplot2, network, rgl
 Date: 2018-03-04
 Author: Teng Fei, Tianwei Yu
 Maintainer: Teng Fei <tfei@emory.edu>
-Description: QuantNorm modifies the distance matrix obtained from data with batch effects, so as to improve the performance of sample pattern detection, such as clustering, dimension reduction, and construction of networks between subjects. The method has been published in Bioinformatics (Fei et al, 2018, https://doi.org/10.1093/bioinformatics/bty117). This package is also avaiable from GitHub (https://github.com/tengfei-emory/QuantNorm).
+BugReports: https://github.com/tengfei-emory/QuantNorm/issues
+Materials: README.md
 License: GPL (>= 2)
 RoxygenNote: 6.0.1

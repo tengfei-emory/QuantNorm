@@ -7,5 +7,5 @@ Date: 2018-03-04
 Author: Teng Fei, Tianwei Yu
 Maintainer: Teng Fei <tfei@emory.edu>
 Description: QuantNorm modifies the distance matrix obtained from data with batch effects, so as to improve the performance of sample pattern detection, such as clustering, dimension reduction, and construction of networks between subjects. The method has been published in Bioinformatics (Fei et al, 2018, https://doi.org/10.1093/bioinformatics/bty117). This package is also avaiable from GitHub (https://github.com/tengfei-emory/QuantNorm).
-License: GPL-2
+License: GPL (>= 2)
 RoxygenNote: 6.0.1

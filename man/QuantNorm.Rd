@@ -2,7 +2,7 @@
 % Please edit documentation in R/QuantNorm.R
 \name{QuantNorm}
 \alias{QuantNorm}
-\title{Conducting batch effect correction by quantile normalization}
+\title{Adjust the distance matrix by quantile normalization}
 \usage{
 QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
   tol = 0.01, max = 50, logdat = TRUE, standardize = FALSE)
@@ -28,7 +28,7 @@ QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
 The corrected 1-correlation matrix between subjects.
 }
 \description{
-Conducting batch effect correction by quantile normalization
+Adjust the distance matrix by quantile normalization
 }
 \examples{
 

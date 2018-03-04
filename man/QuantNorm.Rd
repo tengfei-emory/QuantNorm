@@ -14,7 +14,7 @@ QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
 
 \item{method}{Method for the quantile normalization. There are two options: "row/column" and "vectorize".}
 
-\item{cor_method}{Method to calculate the correlation matrix.}
+\item{cor_method}{Method to calculate the correlation matrix, can be 'spearman'(default), 'pearson' or 'kendall'.}
 
 \item{tol}{The tolerance for the iterative method "row/column", which is the Euclidean distance of the vectorized two dissimilarity matrices before and after each iteration.}
 

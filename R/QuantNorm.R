@@ -5,7 +5,7 @@
 #' @param dat The original p*n batch effect data with n subjects and p RNA-seq measurements.
 #' @param batch The vector of length n indicating which batch the subjects belong to.
 #' @param method Method for the quantile normalization. There are two options: "row/column" and "vectorize".
-#' @param cor_method Method to calculate the correlation matrix.
+#' @param cor_method Method to calculate the correlation matrix, can be 'spearman'(default), 'pearson' or 'kendall'.
 #' @param tol The tolerance for the iterative method "row/column", which is the Euclidean distance of the vectorized two dissimilarity matrices before and after each iteration.
 #' @param max Maximum number of the iteration if the tolerance is not reached.
 #' @param logdat Whether conducting log transformation to data or not.

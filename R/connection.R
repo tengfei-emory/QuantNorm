@@ -15,7 +15,8 @@
 #' batches <- c(rep(1,13),rep(2,13))
 #'
 #' #QuantNorm correction
-#' corrected.distance.matrix <- QuantNorm(ENCODE,batches,method='row/column', cor_method='pearson', logdat=FALSE,standardize = TRUE, tol=1e-4)
+#' corrected.distance.matrix <- QuantNorm(ENCODE,batches,method='row/column', cor_method='pearson',
+#'                                        logdat=FALSE,standardize = TRUE, tol=1e-4)
 #'
 #' #Constructing connection matrix
 #'
@@ -25,7 +26,9 @@
 #' ENCODE.net=network(mat, directed=FALSE)
 #' ENCODE.net.col <- c("Human" = "#ff69b4", "Mouse" = "#0099ff")
 #' ENCODE.net %v% "Species" <- c(rep('Human',13),rep('Mouse',13))
-#' p0 <- ggnet2(ENCODE.net,label=TRUE,color = 'Species', palette = "Set2",size = 3, vjust = -0.6,mode = "kamadakawai",label.size = 3, color.legend = 'Species')+theme(legend.position = 'bottom')
+#' p0 <- ggnet2(ENCODE.net,label=TRUE,color = 'Species', palette = "Set2",
+#'              size = 3, vjust = -0.6,mode = "kamadakawai",label.size = 3,
+#'              color.legend = 'Species')+theme(legend.position = 'bottom')
 #' plot(p0)
 
 

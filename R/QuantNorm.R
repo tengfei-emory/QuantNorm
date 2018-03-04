@@ -1,4 +1,4 @@
-#' Conducting batch effect correction by quantile normalization
+#' Adjust the distance matrix by quantile normalization
 #'
 #'
 #'

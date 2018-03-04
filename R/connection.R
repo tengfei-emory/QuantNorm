@@ -22,10 +22,10 @@
 #' mat <- connection.matrix(corrected.distance.matrix,colnames(corrected.distance.matrix))
 #'
 #' #Creating network object and plot
-#' ENCODE.net=network(mat, directed=F)
+#' ENCODE.net=network(mat, directed=FALSE)
 #' ENCODE.net.col <- c("Human" = "#ff69b4", "Mouse" = "#0099ff")
 #' ENCODE.net %v% "Species" <- c(rep('Human',13),rep('Mouse',13))
-#' p0 <- ggnet2(ENCODE.net,label=T,color = 'Species', palette = "Set2",size = 3, vjust = -0.6,mode = "kamadakawai",label.size = 3, color.legend = 'Species')+theme(legend.position = 'bottom')
+#' p0 <- ggnet2(ENCODE.net,label=TRUE,color = 'Species', palette = "Set2",size = 3, vjust = -0.6,mode = "kamadakawai",label.size = 3, color.legend = 'Species')+theme(legend.position = 'bottom')
 #' plot(p0)
 
 

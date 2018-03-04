@@ -50,3 +50,6 @@ plot3d(princomp(1-cor(brain,method='spearman'))$scores[,1:3], col=celltype, size
 ccc <- QuantNorm(brain,batches,tol=1e-4)
 plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
 }
+\references{
+Fei et al (2018) Mitigating the adverse impact of batch effects in sample pattern detection, \textit{Bioinformatics}.
+}

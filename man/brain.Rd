@@ -6,7 +6,7 @@
 \title{Brain RNA-Seq data for both human and mouse.}
 \format{A data frame with 15041 rows and 62 columns}
 \source{
-Zhang, Ye, et al. "Purification and characterization of progenitor and mature human astrocytes reveals transcriptional and functional differences with mouse." Neuron 89.1 (2016): 37-53. \url{http://web.stanford.edu/group/barres_lab/brainseq2/brainseq2.html}
+Zhang, Ye, et al. "Purification and characterization of progenitor and mature human astrocytes reveals transcriptional and functional differences with mouse." Neuron 89.1 (2016): 37-53.
 }
 \usage{
 data(brain)

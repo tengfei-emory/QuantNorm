@@ -1,9 +1,13 @@
 #' Construct connection matrix for network analysis
 #'
+#' @description For data with known labels, this function constructs a connection matrix between unique labels, such as unique cell types. The returned matrix can be used for subject-wise network construction.
 #' @param mat n*n dissimilarity (1-correlation) matrix (e.g. obtained by QuantNorm).
 #' @param label n-dimension vector for the labels of the n subjects. Replicates share the same label.
 #' @param threshold A number between 0 to 1. Two groups will be regarded as connected if average 1-correlation < threshold.
 #' @param closest True or False. Whether connect the closest group or not if the closest group cannot satisfy the threshold condition.
+#' @return Returns the connection matrix between unique labels.
+#' @author Teng Fei. Email: tfei@emory.edu
+#' @references Fei et al (2018), Mitigating the adverse impact of batch effects in sample pattern detection, Bioinformatics, https://doi.org/10.1093/bioinformatics/bty117.
 #' @export
 #' @examples
 #'
@@ -20,7 +24,7 @@
 #'
 #' #Constructing connection matrix
 #'
-#' mat <- connection.matrix(corrected.distance.matrix,colnames(corrected.distance.matrix))
+#' mat <- connection.matrix(mat=corrected.distance.matrix,label=colnames(corrected.distance.matrix))
 #'
 #' #Creating network object and plot
 #' ENCODE.net=network(mat, directed=FALSE)

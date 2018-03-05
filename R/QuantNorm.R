@@ -1,7 +1,7 @@
-#' Adjust the distance matrix by quantile normalization
+#' Adjust the distance matrix by quantile normalization for data with batch effect
 #'
 #'
-#'
+#' @description This function applies quantile normalization on the distance matrix (dissimilarity matrix) and return the corrected 1-correlation matrix.
 #' @param dat The original p*n batch effect data with n subjects and p RNA-seq measurements.
 #' @param batch The vector of length n indicating which batch the subjects belong to.
 #' @param method Method for the quantile normalization. There are two options: "row/column" and "vectorize".
@@ -10,29 +10,26 @@
 #' @param max Maximum number of the iteration if the tolerance is not reached.
 #' @param logdat Whether conducting log transformation to data or not.
 #' @param standardize Whether conducting standardization [(dat - mean)/sqrt(var)] to data or not.
-#' @return The corrected 1-correlation matrix between subjects.
+#' @details The modified distance matrix can improve the performance of sample pattern detection, such as clustering.
+#' @return Returns the corrected 1-correlation matrix between subjects.
+#' @author Teng Fei. Email: tfei@emory.edu
 #' @references Fei et al (2018), Mitigating the adverse impact of batch effects in sample pattern detection, Bioinformatics, https://doi.org/10.1093/bioinformatics/bty117.
 #' @export
 #' @examples
 #'
-#' library(rgl) #for 3D PCA display
+#' library(pheatmap) #drawing heatmap
 #'
-#' data("brain")
+#' data("ENCODE") #load the ENCODE data
 #'
-#' #Numbering the cells by cell types
-#' celltype <- c(rep(1,8),rep(7,6),rep(1,12),rep(2,1),rep(3,5),rep(4,3),rep(5,2),rep(6,4),
-#'               rep(1,2),rep(1,4),rep(2,2),rep(3,6),rep(4,2),rep(5,2),rep(6,3))
+#' #Before correction, the subjects are clustered by species
+#' pheatmap(cor(ENCODE))
 #'
-#' #Assigning the batch number that the 62 subjects belonging to.
-#' batches <- c(rep(1,41),rep(2,21))
-#'
-#' #Plot the 3D PCA for the uncorrected batch effect data
-#' plot3d(princomp(1-cor(brain,method='spearman'))$scores[,1:3], col=celltype, size=10)
+#' #Assigning the batches based on species
+#' batches <- c(rep(1,13),rep(2,13))
 #'
 #' #QuantNorm correction
-#' ccc <- QuantNorm(brain,batches,tol=1e-4)
-#' plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
-
+#' corrected.distance.matrix <- QuantNorm(ENCODE,batches,method='row/column', cor_method='pearson', logdat=FALSE, standardize = TRUE, tol=1e-4)
+#' pheatmap(1-corrected.distance.matrix)
 
 QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman', tol = 1e-2, max = 50, logdat = TRUE,
                        standardize = FALSE)

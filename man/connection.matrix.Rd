@@ -15,8 +15,11 @@ connection.matrix(mat, label, threshold = 0.15, closest = TRUE)
 
 \item{closest}{True or False. Whether connect the closest group or not if the closest group cannot satisfy the threshold condition.}
 }
+\value{
+Returns the connection matrix between unique labels.
+}
 \description{
-Construct connection matrix for network analysis
+For data with known labels, this function constructs a connection matrix between unique labels, such as unique cell types. The returned matrix can be used for subject-wise network construction.
 }
 \examples{
 
@@ -33,7 +36,7 @@ corrected.distance.matrix <- QuantNorm(ENCODE,batches,method='row/column', cor_m
 
 #Constructing connection matrix
 
-mat <- connection.matrix(corrected.distance.matrix,colnames(corrected.distance.matrix))
+mat <- connection.matrix(mat=corrected.distance.matrix,label=colnames(corrected.distance.matrix))
 
 #Creating network object and plot
 ENCODE.net=network(mat, directed=FALSE)
@@ -42,4 +45,10 @@ p0 <- ggnet2(ENCODE.net,label=TRUE,color = 'Species', palette = "Set2",
              size = 3, vjust = -0.6,mode = "kamadakawai",label.size = 3,
              color.legend = 'Species')+theme(legend.position = 'bottom')
 plot(p0)
+}
+\references{
+Fei et al (2018), Mitigating the adverse impact of batch effects in sample pattern detection, Bioinformatics, https://doi.org/10.1093/bioinformatics/bty117.
+}
+\author{
+Teng Fei. Email: tfei@emory.edu
 }

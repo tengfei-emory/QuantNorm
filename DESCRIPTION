@@ -4,7 +4,7 @@ Description: Our method modifies the distance matrix obtained from data with bat
 Version: 1.0.0
 Depends: R (>= 3.4.0)
 Imports: stats
-Suggests:  GGally, ggplot2, network, pheatmap, sna
+Suggests:  GGally, ggplot2, network, pheatmap, rgl, sna
 Date: 2018-03-04
 Author: Teng Fei, Tengjiao Zhang, Weiyang Shi, Tianwei Yu
 Maintainer: Teng Fei <tfei@emory.edu>

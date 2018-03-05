@@ -1,7 +1,7 @@
 #' Adjust the distance matrix by quantile normalization for data with batch effect
 #'
 #'
-#' @description This function applies quantile normalization on the distance matrix (dissimilarity matrix) and return the corrected 1-correlation matrix.
+#' @description This function applies quantile normalization on the distance matrix (dissimilarity matrix) and return the corrected distance matrix.
 #' @param dat The original p*n batch effect data with n subjects and p RNA-seq measurements.
 #' @param batch The vector of length n indicating which batch the subjects belong to.
 #' @param method Method for the quantile normalization. There are two options: "row/column" and "vectorize".
@@ -10,10 +10,9 @@
 #' @param max Maximum number of the iteration if the tolerance is not reached.
 #' @param logdat Whether conducting log transformation to data or not.
 #' @param standardize Whether conducting standardization [(dat - mean)/sqrt(var)] to data or not.
-#' @details The modified distance matrix can improve the performance of sample pattern detection, such as clustering.
 #' @return Returns the corrected 1-correlation matrix between subjects.
 #' @author Teng Fei. Email: tfei@emory.edu
-#' @references Fei et al (2018), Mitigating the adverse impact of batch effects in sample pattern detection, Bioinformatics, https://doi.org/10.1093/bioinformatics/bty117.
+#' @references Fei et al (2018), Mitigating the adverse impact of batch effects in sample pattern detection, Bioinformatics, <https://doi.org/10.1093/bioinformatics/bty117>.
 #' @export
 #' @examples
 #'

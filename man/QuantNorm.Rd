@@ -28,10 +28,7 @@ QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
 Returns the corrected 1-correlation matrix between subjects.
 }
 \description{
-This function applies quantile normalization on the distance matrix (dissimilarity matrix) and return the corrected 1-correlation matrix.
-}
-\details{
-The modified distance matrix can improve the performance of sample pattern detection, such as clustering.
+This function applies quantile normalization on the distance matrix (dissimilarity matrix) and return the corrected distance matrix.
 }
 \examples{
 
@@ -50,7 +47,7 @@ corrected.distance.matrix <- QuantNorm(ENCODE,batches,method='row/column', cor_m
 pheatmap(1-corrected.distance.matrix)
 }
 \references{
-Fei et al (2018), Mitigating the adverse impact of batch effects in sample pattern detection, Bioinformatics, https://doi.org/10.1093/bioinformatics/bty117.
+Fei et al (2018), Mitigating the adverse impact of batch effects in sample pattern detection, Bioinformatics, <https://doi.org/10.1093/bioinformatics/bty117>.
 }
 \author{
 Teng Fei. Email: tfei@emory.edu

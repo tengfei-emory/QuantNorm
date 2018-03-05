@@ -23,7 +23,7 @@ For data with known labels, this function constructs a connection matrix between
 }
 \examples{
 
-library(network); library(GGally) ;library(ggplot2); library(sna) #drawing network graph
+library(network); library(ggplot2); library(sna); library(GGally) #drawing network graph
 
 data("ENCODE")
 

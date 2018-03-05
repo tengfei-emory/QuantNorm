@@ -27,7 +27,8 @@
 #' batches <- c(rep(1,13),rep(2,13))
 #'
 #' #QuantNorm correction
-#' corrected.distance.matrix <- QuantNorm(ENCODE,batches,method='row/column', cor_method='pearson', logdat=FALSE, standardize = TRUE, tol=1e-4)
+#' corrected.distance.matrix <- QuantNorm(ENCODE,batches,method='row/column', cor_method='pearson',
+#'                                        logdat=FALSE, standardize = TRUE, tol=1e-4)
 #' pheatmap(1-corrected.distance.matrix)
 
 QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman', tol = 1e-2, max = 50, logdat = TRUE,

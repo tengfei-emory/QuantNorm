@@ -18,7 +18,7 @@ function(x,y)
   z.x<-seq(0,1,length.out=length(x2))
   z.y<-seq(0,1,length.out=length(y2))
 
-  new.y2<-approx(x=z.x, y=x2, xout=z.y)$y
+  new.y2<-stats::approx(x=z.x, y=x2, xout=z.y)$y
   y[y>0]<-new.y2
   y<-y[r.y]
 

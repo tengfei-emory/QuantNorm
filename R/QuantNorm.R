@@ -44,10 +44,10 @@ QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman
     ccc <- standardization(dat, batch, method=cor_method)
   }
   else if (logdat == FALSE) {
-    ccc <- 1 - cor(dat, method = cor_method)
+    ccc <- 1 - stats::cor(dat, method = cor_method)
   }
   else {
-    ccc <- 1 - cor(log(dat + 1), method = cor_method)
+    ccc <- 1 - stats::cor(log(dat + 1), method = cor_method)
   }
 
   if (method == "vectorize") {

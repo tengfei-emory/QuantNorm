@@ -7,7 +7,7 @@
 #' @export
 #' @examples
 #'
-#' library(network); library(GGally) ;library(ggplot2) #drawing network graph
+#' library(network); library(GGally) ;library(ggplot2); library(sna) #drawing network graph
 #'
 #' data("ENCODE")
 #'
@@ -24,7 +24,6 @@
 #'
 #' #Creating network object and plot
 #' ENCODE.net=network(mat, directed=FALSE)
-#' ENCODE.net.col <- c("Human" = "#ff69b4", "Mouse" = "#0099ff")
 #' ENCODE.net %v% "Species" <- c(rep('Human',13),rep('Mouse',13))
 #' p0 <- ggnet2(ENCODE.net,label=TRUE,color = 'Species', palette = "Set2",
 #'              size = 3, vjust = -0.6,mode = "kamadakawai",label.size = 3,

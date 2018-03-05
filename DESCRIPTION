@@ -6,7 +6,7 @@ Depends: R (>= 3.4.0)
 Imports: stats
 Suggests:  GGally, ggplot2, network, rgl, sna
 Date: 2018-03-04
-Author: Teng Fei, Tianwei Yu
+Author: Teng Fei, Tengjiao Zhang, Weiyang Shi, Tianwei Yu
 Maintainer: Teng Fei <tfei@emory.edu>
 BugReports: https://github.com/tengfei-emory/QuantNorm/issues
 Materials: README.md

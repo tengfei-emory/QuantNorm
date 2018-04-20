@@ -68,11 +68,6 @@ batches <- c(rep(1,13),rep(2,13))
 #QuantNorm correction
 corrected.distance.matrix <- QuantNorm(ENCODE,batches,method='row/column', cor_method='pearson', logdat=F,standardize = T,tol=1e-4)
 pheatmap(1-corrected.distance.matrix)
-
-#ComBat
-library(sva) #(may need to install package sva from bioconductor)
-cleandat <- ComBat(ENCODE,batches)
-pheatmap(cor(cleandat),clustering_method="average")
 ```
 QuantNorm (left) vs ComBat (right):
 

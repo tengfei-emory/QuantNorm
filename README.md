@@ -98,7 +98,7 @@ library(scater)
 
 # Construct a SingleCellExperiment object
 
-sce <- SingleCellExperiment(assays = list(normcounts = as.matrix(DATA)), colData = known.cell.type.vector)
+scenet <- SingleCellExperiment(assays = list(normcounts = as.matrix(DATA)), colData = known.cell.type.vector)
 
 # Run the SC3 algorithm
 sce <- sc3_prepare(scenet)

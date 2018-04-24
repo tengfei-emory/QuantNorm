@@ -96,10 +96,7 @@ library(SingleCellExperiment)
 library(SC3)
 library(scater)
 
-# Construct a SingleCellExperiment object
-
-sce <- SingleCellExperiment(assays = list(normcounts = as.matrix(DATA)), colData = known.cell.type.vector)
-
+# The following code requires a construction of a SingleCellExperiment object (sce) for the data matrix DATA.
 # Run the SC3 algorithm
 sce <- sc3_prepare(sce)
 sce <- sc3_estimate_k(sce)

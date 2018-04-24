@@ -20,6 +20,7 @@ library(devtools)
 install_github('tengfei-emory/QuantNorm')
 library(QuantNorm)
 ```
+Currently the GitHub version supports R version >= 3.3.0.
 
 # Preprocessing
 

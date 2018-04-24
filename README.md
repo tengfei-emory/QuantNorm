@@ -89,7 +89,7 @@ Suppose for a data matrix DATA, we have obtained the 2 corrected distance matrix
 pearson.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='pearson', logdat=F,standardize=T,tol=1e-4)
 spearman.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='pearson', logdat=F,standardize=T,tol=1e-4)
 ```
-Then we could use SC3 in the following way:
+Then we could use SC3 in the following way (SC3 codes are borrowed from [SC3 bioconductor manual](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html#singlecellexperiment-qc-and-scater)) 
 
 ```{r}
 library(SingleCellExperiment)
@@ -98,10 +98,10 @@ library(scater)
 
 # Construct a SingleCellExperiment object
 
-scenet <- SingleCellExperiment(assays = list(normcounts = as.matrix(DATA)), colData = known.cell.type.vector)
+sce <- SingleCellExperiment(assays = list(normcounts = as.matrix(DATA)), colData = known.cell.type.vector)
 
 # Run the SC3 algorithm
-sce <- sc3_prepare(scenet)
+sce <- sc3_prepare(sce)
 sce <- sc3_estimate_k(sce)
 sce <- sc3_calc_dists(sce)
 

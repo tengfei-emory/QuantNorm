@@ -21,6 +21,12 @@ install_github('tengfei-emory/QuantNorm')
 library(QuantNorm)
 ```
 
+# Preprocessing
+
+Before putting the data in QuantNorm, please feel free to conduct preprocessing, such as cell filtering, log-transformation, or standardization (zero mean and one standard deviation). Currently, QuantNorm only features simple built-in preprocessing task, such as log- transformation and standardization. 
+
+The choice of preprocessing will probably affect the result of running QuantNorm. Since the behavior is pretty much dataset-specific, it is good to try different preprocessing methods.
+
 
 # Example 1 - Human and Mouse Brain RNA-seq Data
 
@@ -73,15 +79,56 @@ QuantNorm (left) vs ComBat (right):
 
 ![Heatmaps](https://github.com/tengfei-emory/Image/blob/master/f7.png)
 
+# Incorporating with the SC3 method (Under Construction)
 
+As mentioned in our paper, our method can improve the performance of a current powerful clustering method, Single-Cell Consensus Clustering ([SC3](http://www.bioconductor.org/packages/release/bioc/html/SC3.html), Kiselev VY et al, 2017). The following code shows how we can plug in the corrected distance matrix to the SC3 algorithm in R. For more detailed tutorial about SC3, please refer to [this page](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html) by Vladimir Kiselev.
+
+Suppose for a data matrix DATA, we have obtained the 2 corrected distance matrix from QuantNorm, one is based on spearman correlation and one is based on pearson correlation:
+
+```{r}
+pearson.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='pearson', logdat=F,standardize=T,tol=1e-4)
+spearman.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='pearson', logdat=F,standardize=T,tol=1e-4)
+```
+Then we could use SC3 in the following way:
+
+```{r}
+library(SingleCellExperiment)
+library(SC3)
+library(scater)
+
+# Construct a SingleCellExperiment object
+
+sce <- SingleCellExperiment(assays = list(normcounts = as.matrix(DATA)), colData = known.cell.type.vector)
+
+# Run the SC3 algorithm
+sce <- sc3_prepare(scenet)
+sce <- sc3_estimate_k(sce)
+sce <- sc3_calc_dists(sce)
+
+# Replacing the original pearson and spearman distance matrices by the corrected ones.
+sce@metadata$sc3$distances$spearman <- spearman.cor
+sce@metadata$sc3$distances$pearson <- pearson.cor
+
+# Continue finishing the standard steps
+sce <- sc3_calc_transfs(sce)
+sce <- sc3_kmeans(sce, ks = 13)
+sce <- sc3_calc_consens(sce)
+
+# Check clustering results and ARI
+library(mclust)
+svm_labels <- colData(sce)$sc3_13_clusters
+adjustedRandIndex(cell.type[,1], svm_labels)
+```
 
 # References
 
-Fei, Teng, et al. "Mitigating the adverse impact of batch effects in sample pattern detection", Bioinformatics, accepted (2018).
+Fei, Teng, et al. "Mitigating the adverse impact of batch effects in sample pattern detection", Bioinformatics, epub ahead of printing (2018).
 
 Gilad, Yoav, and Orna Mizrahi-Man. "A reanalysis of mouse ENCODE comparative gene expression data." F1000Research 4 (2015).
 
 Johnson, W. Evan, Cheng Li, and Ariel Rabinovic. "Adjusting batch effects in microarray expression data using empirical Bayes methods." Biostatistics 8.1 (2007): 118-127.
+
+Kiselev, Vladimir Yu, et al. "SC3: consensus clustering of single-cell RNA-seq data." Nature methods 14.5 (2017): 483.
 
 Zhang, Ye, et al. "Purification and characterization of progenitor and mature human astrocytes reveals transcriptional and functional differences with mouse." Neuron 89.1 (2016): 37-53.
 

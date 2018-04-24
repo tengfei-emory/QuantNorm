@@ -81,6 +81,8 @@ QuantNorm (left) vs ComBat (right):
 
 # Incorporating with the SC3 method (Under Construction)
 
+(This section is still under construction as I plan to include a real data analysis exmaple of single-cell RNA-seq soon.)
+
 As mentioned in our paper, our method can improve the performance of a current powerful clustering method, Single-Cell Consensus Clustering ([SC3](http://www.bioconductor.org/packages/release/bioc/html/SC3.html), Kiselev VY et al, 2017). The following code shows how we can plug in the corrected distance matrix to the SC3 algorithm in R. For more detailed tutorial about SC3, please refer to [this page](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html) by Vladimir Kiselev.
 
 Suppose for a data matrix DATA, we have obtained the 2 corrected distance matrix from QuantNorm, one is based on spearman correlation and one is based on pearson correlation:

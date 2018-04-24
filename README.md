@@ -86,8 +86,8 @@ As mentioned in our paper, our method can improve the performance of a current p
 Suppose for a data matrix DATA, we have obtained the 2 corrected distance matrix from QuantNorm, one is based on spearman correlation and one is based on pearson correlation:
 
 ```{r}
-pearson.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='pearson', logdat=F,standardize=T,tol=1e-4)
-spearman.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='pearson', logdat=F,standardize=T,tol=1e-4)
+pearson.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='pearson')
+spearman.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='spearman')
 ```
 Then we could use SC3 in the following way (SC3 codes are borrowed from [SC3 bioconductor manual](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html#singlecellexperiment-qc-and-scater)) 
 

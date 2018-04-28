@@ -82,8 +82,6 @@ QuantNorm (left) vs ComBat (right):
 
 # Incorporating with the SC3 method (Under Construction)
 
-(This section is still under construction as I plan to include a real data analysis exmaple of single-cell RNA-seq soon.)
-
 As mentioned in our paper, our method can improve the performance of a current powerful clustering method, Single-Cell Consensus Clustering ([SC3](http://www.bioconductor.org/packages/release/bioc/html/SC3.html), Kiselev VY et al, 2017). The following code shows how we can plug in the corrected distance matrix to the SC3 algorithm in R. For more detailed tutorial about SC3, please refer to [this page](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html) by Vladimir Kiselev.
 
 The following example is based on the single-cell RNA-seq data of mouse neuron (Usoskin et al, 2015). The SingleCellExperiment object 'usoskin.rds' is obtained from [Hemberg-lab's RNA-seq dataset website](https://hemberg-lab.github.io/scRNA.seq.datasets/mouse/brain/).
@@ -117,7 +115,7 @@ pearson.cor <- QuantNorm(dat.sc3[rowSums(dat.sc3 != 0) > 622/4,],batch=as.numeri
 
 spearman.cor <- QuantNorm(dat.sc3[rowSums(dat.sc3 != 0) > 622/4,],batch=as.numeric(as.factor(batch)),cor_method='spearman',logdat=F,max=5)
 ```
-Then we could use SC3 in the following way (SC3 codes are borrowed from [SC3 bioconductor manual](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html#singlecellexperiment-qc-and-scater)) 
+Then we could use SC3 in the following way (SC3 codes are borrowed from [SC3 bioconductor manual](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html#singlecellexperiment-qc-and-scater)). Since SC3 is not a deterministic method, the resulting ARI index can vary, as shown in the supplementary fig. S5 in [Fei et al, 2018](https://doi.org/10.1093/bioinformatics/bty117) paper.
 
 ```{r}
 # Run the SC3 algorithm step by step
@@ -137,7 +135,10 @@ sce <- sc3_calc_consens(sce)
 # Check clustering results and ARI
 library(mclust)
 svm_labels <- colData(sce)$sc3_4_clusters
-adjustedRandIndex(cell.type[,1], svm_labels)
+adjustedRandIndex(cell.type, svm_labels)
+
+# Visualization
+sc3_interactive(sce)
 ```
 
 # References

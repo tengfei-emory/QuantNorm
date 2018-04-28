@@ -86,22 +86,42 @@ QuantNorm (left) vs ComBat (right):
 
 As mentioned in our paper, our method can improve the performance of a current powerful clustering method, Single-Cell Consensus Clustering ([SC3](http://www.bioconductor.org/packages/release/bioc/html/SC3.html), Kiselev VY et al, 2017). The following code shows how we can plug in the corrected distance matrix to the SC3 algorithm in R. For more detailed tutorial about SC3, please refer to [this page](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html) by Vladimir Kiselev.
 
-Suppose for a data matrix DATA, we have obtained the 2 corrected distance matrix from QuantNorm, one is based on spearman correlation and one is based on pearson correlation:
+The following example is based on the single-cell RNA-seq data of mouse neuron (Usoskin et al, 2015). The SingleCellExperiment object 'usoskin.rds' is obtained from [Hemberg-lab's RNA-seq dataset website](https://hemberg-lab.github.io/scRNA.seq.datasets/mouse/brain/).
 
 ```{r}
-pearson.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='pearson')
-spearman.cor <- QuantNorm(DATA,batches,method='row/column', cor_method='spearman')
+library(SC3)
+library(scater)
+library(SingleCellExperiment)
+library(QuantNorm)
+library(Biobase)
+library(mclust)
+
+# Import the SCE object data
+scenet<-readRDS(url('https://scrnaseq-public-datasets.s3.amazonaws.com/scater-objects/usoskin.rds'))
+counts(scenet) <- normcounts(scenet)
+
+# This is the true cell type
+cell.type <- scenet@colData$cell_type1
+
+# This is the expression matrix
+dat.sc3 <- exprs(scenet)
+
+# This is batch information
+batch <- scenet@colData$Library
+```
+
+For the expressoin matrix dat.sc3, we can obtain the 2 corrected distance matrix from QuantNorm, one is based on spearman correlation and one is based on pearson correlation: (In order to save time, I set the maximum iteration as 5. This can be adjusted)
+
+```{r}
+pearson.cor <- QuantNorm(dat.sc3[rowSums(dat.sc3 != 0) > 622/4,],batch=as.numeric(as.factor(batch)),cor_method='pearson',logdat=F,max=5)
+
+spearman.cor <- QuantNorm(dat.sc3[rowSums(dat.sc3 != 0) > 622/4,],batch=as.numeric(as.factor(batch)),cor_method='spearman',logdat=F,max=5)
 ```
 Then we could use SC3 in the following way (SC3 codes are borrowed from [SC3 bioconductor manual](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html#singlecellexperiment-qc-and-scater)) 
 
 ```{r}
-library(SingleCellExperiment)
-library(SC3)
-library(scater)
-
-# The following code requires a construction of a SingleCellExperiment object (sce) for the data matrix DATA.
-# Run the SC3 algorithm
-sce <- sc3_prepare(sce)
+# Run the SC3 algorithm step by step
+sce <- sc3_prepare(scenet)
 sce <- sc3_estimate_k(sce)
 sce <- sc3_calc_dists(sce)
 
@@ -111,12 +131,12 @@ sce@metadata$sc3$distances$pearson <- pearson.cor
 
 # Continue finishing the standard steps
 sce <- sc3_calc_transfs(sce)
-sce <- sc3_kmeans(sce, ks = 13)
+sce <- sc3_kmeans(sce, ks = 4)
 sce <- sc3_calc_consens(sce)
 
 # Check clustering results and ARI
 library(mclust)
-svm_labels <- colData(sce)$sc3_13_clusters
+svm_labels <- colData(sce)$sc3_4_clusters
 adjustedRandIndex(cell.type[,1], svm_labels)
 ```
 
@@ -126,9 +146,13 @@ Fei, Teng, et al. "Mitigating the adverse impact of batch effects in sample patt
 
 Gilad, Yoav, and Orna Mizrahi-Man. "A reanalysis of mouse ENCODE comparative gene expression data." F1000Research 4 (2015).
 
+Hemberg lab's RNA-seq dataset page https://hemberg-lab.github.io/scRNA.seq.datasets/.
+
 Johnson, W. Evan, Cheng Li, and Ariel Rabinovic. "Adjusting batch effects in microarray expression data using empirical Bayes methods." Biostatistics 8.1 (2007): 118-127.
 
 Kiselev, Vladimir Yu, et al. "SC3: consensus clustering of single-cell RNA-seq data." Nature methods 14.5 (2017): 483.
+
+Usoskin, D. et al. Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing. Nat. Neurosci. 18, 145–153 (2015)
 
 Zhang, Ye, et al. "Purification and characterization of progenitor and mature human astrocytes reveals transcriptional and functional differences with mouse." Neuron 89.1 (2016): 37-53.
 

@@ -96,7 +96,6 @@ library(mclust)
 
 # Import the SCE object data
 scenet<-readRDS(url('https://scrnaseq-public-datasets.s3.amazonaws.com/scater-objects/usoskin.rds'))
-counts(scenet) <- normcounts(scenet)
 
 # This is the true cell type
 cell.type <- scenet@colData$cell_type1

@@ -28,38 +28,7 @@ Before putting the data in QuantNorm, please feel free to conduct preprocessing,
 
 The choice of preprocessing will probably affect the result of running QuantNorm. Since the behavior is pretty much dataset-specific, it is good to try different preprocessing methods.
 
-
-# Example 1 - Human and Mouse Brain RNA-seq Data
-
-The dataset (Zhang et al, 2016) is downloaded from http://web.stanford.edu/group/barres_lab/brainseq2/brainseq2.html. The data consists of brain RNA-seq measurements for human cells and mouse cells. There are 41 human cell samples and 21 mouse cell samples, the types of which is the column name of the data. For each cell sample, there are 15041 gene counts. The dataset can be loaded by data(brain).
-
-```{r}
-library(rgl) #for 3D PCA display
-
-data("brain")
-
-#Numbering the cells by cell types
-celltype <- c(rep(1,8),rep(7,6),rep(1,12),rep(2,1),rep(3,5),rep(4,3),rep(5,2),rep(6,4),
-              rep(1,2),rep(1,4),rep(2,2),rep(3,6),rep(4,2),rep(5,2),rep(6,3))
-
-#Assigning the batch number that the 62 subjects belonging to.
-batches <- c(rep(1,41),rep(2,21))
-
-#Plot the 3D PCA for the uncorrected batch effect data
-plot3d(princomp(1-cor(brain,method='spearman'))$scores[,1:3], col=celltype, size=10)
-
-#QuantNorm correction
-ccc <- QuantNorm(brain,batches,tol=1e-4)
-plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
-
-#ComBat
-library(sva) #(may need to install package sva from bioconductor)
-cleandat <- ComBat(log(brain+1),batches)
-ccc.1<-1-cor(cleandat,method="spearman")
-plot3d(princomp(ccc)$scores[,1:3], col=celltype, size=10)
-```
-
-# Example 2 - ENCODE Data for Human and Mouse Tissues
+# Example - ENCODE Data for Human and Mouse Tissues
 The dataset used in this example is reproduced according to Gilad et al (2015). The data contains the log-normalized counts for 13 different tissues for human and their counterparts in mouse. Our algorithm obtains clusters by tissues. The dataset can be loaded by data(ENCODE).
 
 ```{r}
@@ -80,7 +49,7 @@ QuantNorm (left) vs ComBat (right):
 
 ![Heatmaps](https://github.com/tengfei-emory/Image/blob/master/f7.png)
 
-# Incorporating with the SC3 method (Under Construction)
+# Incorporating with the SC3 method
 
 As mentioned in our paper, our method can improve the performance of a current powerful clustering method, Single-Cell Consensus Clustering ([SC3](http://www.bioconductor.org/packages/release/bioc/html/SC3.html), Kiselev VY et al, 2017). The following code shows how we can plug in the corrected distance matrix to the SC3 algorithm in R. For more detailed tutorial about SC3, please refer to [this page](http://www.bioconductor.org/packages/release/bioc/vignettes/SC3/inst/doc/SC3.html) by Vladimir Kiselev.
 
@@ -153,7 +122,5 @@ Johnson, W. Evan, Cheng Li, and Ariel Rabinovic. "Adjusting batch effects in mic
 Kiselev, Vladimir Yu, et al. "SC3: consensus clustering of single-cell RNA-seq data." Nature methods 14.5 (2017): 483.
 
 Usoskin, D. et al. Unbiased classification of sensory neuron types by large-scale single-cell RNA sequencing. Nat. Neurosci. 18, 145–153 (2015)
-
-Zhang, Ye, et al. "Purification and characterization of progenitor and mature human astrocytes reveals transcriptional and functional differences with mouse." Neuron 89.1 (2016): 37-53.
 
 

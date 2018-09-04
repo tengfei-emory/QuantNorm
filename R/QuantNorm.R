@@ -54,7 +54,7 @@ QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman
   else if (method == "row/column") {
     while (dist > tol && iter < max){
       ccc.0 <- ccc
-      ccc <- qnorm1(ccc, batch)
+      ccc <- qnorm1plus(ccc, batch)
       dist = sqrt(sum((as.vector(ccc)-as.vector(ccc.0))^2))
       iter = iter+1
     }

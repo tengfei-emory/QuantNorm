@@ -14,7 +14,7 @@ QuantNorm modifies the distance matrix obtained from data with batch effects, so
 
 # Study design requirement and running speed
 
-Our method can only be applied on data sets with balanced study design, which means the cell populations should be relatively evenly distributed among batch. For data sets with sample size larger than 500, we recommend setting a maximum iteration number (for example max = 10) to save time. We expect up to an hour for the algorithm to complete even if a maximum iteration number is set.
+Our method can only be applied on data sets with balanced study design, which means the cell populations should be relatively evenly distributed among batches. For data sets with sample size larger than 500, we recommend setting a maximum iteration number (for example max = 10) to save time. We expect up to an hour for the algorithm to complete even if a maximum iteration number is set.
 
 # Installation Guide
 ```{r}

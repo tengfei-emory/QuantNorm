@@ -2,7 +2,7 @@
 #'
 #'
 #' @description This function applies quantile normalization on the distance matrix (dissimilarity matrix) and return the corrected distance matrix.
-#' @param dat The original p*n batch effect data with n subjects and p RNA-seq measurements.
+#' @param dat The original p*n batch effect data with n subjects and p RNA-seq measurements or the n by n distance matrix.
 #' @param batch The vector of length n indicating which batch the subjects belong to.
 #' @param method Method for the quantile normalization. There are two options: "row/column" and "vectorize".
 #' @param cor_method Method to calculate the correlation matrix, can be 'spearman'(default), 'pearson' or 'kendall'.
@@ -37,14 +37,20 @@ QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman
   dist = 10
   iter = 0
 
-  if (standardize == TRUE) {
-    ccc <- standardization(dat, batch, method=cor_method)
-  }
-  else if (logdat == FALSE) {
-    ccc <- 1 - stats::cor(dat, method = cor_method)
-  }
-  else {
-    ccc <- 1 - stats::cor(log(dat + 1), method = cor_method)
+  if (ncol(dat) != nrow(dat)){
+    cat(paste('Input data is a',nrow(dat),'by',ncol(dat),'count matrix.',sep=' '))
+    if (standardize == TRUE) {
+      ccc <- standardization(dat, batch, method=cor_method)
+    }
+    else if (logdat == FALSE) {
+      ccc <- 1 - stats::cor(dat, method = cor_method)
+    }
+    else {
+      ccc <- 1 - stats::cor(log(dat + 1), method = cor_method)
+    }
+  }else if (ncol(dat) == nrow(dat)){
+    cat(paste('Input data is a',nrow(dat),'by',ncol(dat),'distance matrix.',sep=' '))
+    ccc <- dat
   }
 
   if (method == "vectorize") {

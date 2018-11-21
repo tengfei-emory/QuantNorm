@@ -8,7 +8,7 @@ QuantNorm(dat, batch, method = "row/column", cor_method = "spearman",
   tol = 0.01, max = 50, logdat = TRUE, standardize = FALSE)
 }
 \arguments{
-\item{dat}{The original p*n batch effect data with n subjects and p RNA-seq measurements.}
+\item{dat}{The original p*n batch effect data with n subjects and p RNA-seq measurements or the n by n distance matrix.}
 
 \item{batch}{The vector of length n indicating which batch the subjects belong to.}
 

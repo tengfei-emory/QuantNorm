@@ -38,7 +38,7 @@ QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman
   iter = 0
 
   if (ncol(dat) != nrow(dat)){
-    cat(paste('Input data is a',nrow(dat),'by',ncol(dat),'count matrix.',sep=' '))
+    cat(paste('Input data is a',nrow(dat),'by',ncol(dat),'count matrix.\n',sep=' '))
     if (standardize == TRUE) {
       ccc <- standardization(dat, batch, method=cor_method)
     }
@@ -49,7 +49,7 @@ QuantNorm <- function (dat, batch, method = "row/column", cor_method = 'spearman
       ccc <- 1 - stats::cor(log(dat + 1), method = cor_method)
     }
   }else if (ncol(dat) == nrow(dat)){
-    cat(paste('Input data is a',nrow(dat),'by',ncol(dat),'distance matrix.',sep=' '))
+    cat(paste('Input data is a',nrow(dat),'by',ncol(dat),'distance matrix.\n',sep=' '))
     ccc <- dat
   }
 

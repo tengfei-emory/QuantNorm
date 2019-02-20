@@ -2,6 +2,7 @@
 Mitigating the adverse impact of batch effects in sample pattern detection
 
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/QuantNorm)](http://cran.r-project.org/web/packages/QuantNorm)
+[![Downloads badge](https://cranlogs.r-pkg.org/badges/QuantNorm)](https://cranlogs.r-pkg.org/badges/QuantNorm)
 
 QuantNorm modifies the distance matrix obtained from data with batch effects, so as to improve the performance of sample pattern detection, such as clustering, dimension reduction, and construction of networks between subjects. The method has been published in Bioinformatics (Fei et al, 2018, https://doi.org/10.1093/bioinformatics/bty117).
 
